@@ -11,12 +11,12 @@ const app: Application = express();
 
 
 app.get('/', async (req: express.Request<{}, {}, {}, { url: string }>, res: express.Response, next: NextFunction) => {
-  let url: string = req.query.url;
+  let url: string = req.query.url || 'about:blank';
   const fileName = `${hash(url)}.pdf`;
   const filePath = `files/${fileName}`;
   const fullPath = `public/${filePath}`;
 
-  console.log(`Request to pdf ${filePath}...`)
+  console.log(`Request cached pdf ${filePath}...`)
   const serveOptions = {
     root: 'public',
     headers: {
@@ -26,7 +26,7 @@ app.get('/', async (req: express.Request<{}, {}, {}, { url: string }>, res: expr
   // try to serve file
   res.sendFile(filePath, serveOptions, async function (err) {
     if (err) {
-      console.log(`... file not found, generating ${filePath}`)
+      console.log(`... cache not found, generating ${filePath}`)
       await RenderPDF.generateSinglePdf(url, fullPath, { chromeOptions: ['--no-sandbox', '--disable-dev-shm-usage'], printLogs: true });
       console.log(`Generated ${filePath}; ... try serving again`)
 

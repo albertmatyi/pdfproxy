@@ -21,3 +21,9 @@ scripts/ci-build
 ```
 docker run --name pdfproxy --rm -it -p 3000:3000 pdfproxy:latest
 ```
+
+# Test 
+
+Open the following URL in the browser
+
+http://localhost:3000/?url=https://github.com/albertmatyi/pdfproxy
