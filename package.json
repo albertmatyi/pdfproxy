@@ -1,0 +1,23 @@
+{
+  "name": "pdfproxy",
+  "version": "1.0.0",
+  "description": "service that turns URLs to PDFs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/albertmatyi/pdfproxy.git"
+  },
+  "keywords": [
+    "pdf",
+    "proxy"
+  ],
+  "author": "Matyas Albert-Nagy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/albertmatyi/pdfproxy/issues"
+  },
+  "homepage": "https://github.com/albertmatyi/pdfproxy#readme"
+}
