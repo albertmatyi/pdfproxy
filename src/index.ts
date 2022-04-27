@@ -17,19 +17,20 @@ app.get('/', async (req: express.Request<{}, {}, {}, { url: string }>, res: expr
   const fullPath = `public/${filePath}`;
 
   console.log(`Request to pdf ${filePath}...`)
-  const options = {
+  const serveOptions = {
     root: 'public',
     headers: {
       'Content-Disposition': `filename=${url}.pdf`
     },
   };
   // try to serve file
-  res.sendFile(filePath, options, async function (err) {
+  res.sendFile(filePath, serveOptions, async function (err) {
     if (err) {
       console.log(`... file not found, generating ${filePath}`)
-      await RenderPDF.generateSinglePdf(url, fullPath);
-      console.log(`Generated ${filePath}; ... serving`)
-      res.sendFile(filePath, options, function (err) {
+      await RenderPDF.generateSinglePdf(url, fullPath, { chromeOptions: ['--no-sandbox', '--disable-dev-shm-usage'], printLogs: true });
+      console.log(`Generated ${filePath}; ... try serving again`)
+
+      res.sendFile(filePath, serveOptions, function (err) {
         if (err) {
           res.status(500).send('Something broke!')
         } else {

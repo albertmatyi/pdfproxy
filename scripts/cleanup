@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rm public/files/*.pdf || true
+
+echo clean

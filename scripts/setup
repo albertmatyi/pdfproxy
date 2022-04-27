@@ -1,0 +1,10 @@
+#!/bin/sh
+
+docker run \
+  --rm \
+  -it \
+  -w /app \
+  -u 1000 \
+  -v $(pwd):/app \
+  zenika/alpine-chrome:100-with-node-16 \
+    npm install

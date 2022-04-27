@@ -1,0 +1,11 @@
+#!/bin/sh
+
+docker run \
+  --rm \
+  -it \
+  -w /app \
+  -v $(pwd):/app \
+  -e PORT=3000 \
+  --network=host \
+  zenika/alpine-chrome:100-with-node-16 \
+    npm start
